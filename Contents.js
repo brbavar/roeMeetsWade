@@ -67,8 +67,8 @@ const AbortWrong = ({navigation}) => {
                 data={[
                     {key: 'It\'s not that wrong, though.', color: 'blue', screen: 'AbortNotVeryWrong'},
                     {key: 'Its wrongness is of a kind that can be tolerated.', color: 'blue', screen: 'AbortNotRelevantlyWrong'},
-                    {key: 'Then masturbation must also be wrong.', color: 'blue', screen: ''},
-                    {key: 'Then contraception must also be wrong.', color: 'blue', screen: ''},
+                    {key: 'Then masturbation is wrong.', color: 'blue', screen: ''},
+                    {key: 'Then contraception is wrong.', color: 'blue', screen: ''},
                     {key: 'The embryo is a living human organism.', color: 'red', screen: ''},
                     {key: 'Life is intrinsically valuable.', color: 'red', screen: ''},
                     {key: 'Even impairments less severe than death (e.g., fetal alcohol syndrome) are wrong to inflict on the fetus.', color: 'red', screen: ''},
@@ -139,7 +139,7 @@ const AbortNotWrong = ({navigation}) => {
         <LinearGradient colors={colors} locations={locations} style={styles.container}>
             <FlatList
                 data={[
-                    {key: 'Then it must be okay to kill toddlers or newborns.', color: 'red', screen: ''}, 
+                    {key: 'Then it\'s okay to kill toddlers or newborns.', color: 'red', screen: ''}, 
                     {key: 'The embryo isn\'t a living human organism.', color: 'blue', screen: ''}, 
                     {key: 'The embryo isn\'t a person.', color: 'blue', screen: ''},
                     {key: 'The fetus is a parasite.', color: 'blue', screen: ''},
@@ -340,7 +340,7 @@ const Contents = () => {
         <Stack.Navigator 
             initialRouteName='Home' 
             screenOptions={{animationEnabled: true, headerStyle: {backgroundColor: 'black'}, headerTitleStyle: {color: 'white', fontSize: 18, maxWidth: 500}, headerTintColor: 'white'}}>
-            <Stack.Screen name='Home' component={Home} options={{title: 'Welcome to Bipa!', headerTitleStyle: {fontSize: 40}}} />
+            <Stack.Screen name='Home' component={Home} options={{title: 'Welcome to Roe Meets Wade!', headerTitleStyle: {fontSize: 40}}} />
             <Stack.Screen name='AbortWrong' component={AbortWrong} options={{cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid, title: 'Abortion is wrong.'}} />
             <Stack.Screen name='AbortVeryWrong' component={AbortVeryWrong} options={{title: 'Abortion is very wrong.'}} />
             <Stack.Screen name='AbortRelevantlyWrong' component={AbortRelevantlyWrong} options={{title: 'Abortion\'s wrongness is of an intolerable kind.'}} />
