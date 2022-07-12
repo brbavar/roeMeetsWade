@@ -7,15 +7,9 @@ import {CardStyleInterpolators} from '@react-navigation/stack'
 
 const styles = StyleSheet.create({
     container: {
-        position: 'relative',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: 'green'
-    },
-    gradient: {
-        position: 'absolute',
-        top: '49px',
-        left: 0
+        flex: 1,
+        paddingTop: 22,
+        resizeMode: 'cover'
     },
     item: {
         padding: 10,
@@ -27,24 +21,6 @@ const styles = StyleSheet.create({
         borderRadius: '5px',
         backgroundColor: 'rgb(20, 20, 20)',
         color: 'white'
-    },
-    homeHeader: {
-        position: 'absolute',
-        top: 0, 
-        left: 0,
-        height: '49px',
-        width: '100%',
-        backgroundColor: 'black',
-        borderBottomColor: 'white',
-        borderBottomWidth: '1px',
-        paddingLeft: '20px'
-    },
-    homeTitle: {
-        color: 'white',
-        fontSize: 40
-    },
-    header: {
-
     }
 })
 
@@ -64,28 +40,23 @@ const Stack = createNativeStackNavigator()
 
 const Home = ({navigation}) => {
     return (
-        <View style={styles.container}>
-            <View style={styles.homeHeader}>
-                <Text style={styles.homeTitle}>Welcome to Bipa!</Text>
-            </View>
-            <LinearGradient colors={colors} locations={locations} style={styles.gradient}>
-                <FlatList
-                    data={[
-                        {key: 'Abortion is wrong.', color: 'red', screen: 'AbortWrong'},
-                        {key: 'Abortion is not wrong.', color: 'blue', screen: 'AbortNotWrong'},
-                        {key: 'Abortion should be banned.', color: 'red', screen: 'AbortIllegal'},
-                        {key: 'Abortion shouldn\'t be banned.', color: 'blue', screen: 'AbortLegal'},
-                        {key: 'Overturning Roe was a good decision.', color: 'red', screen: 'NoRoe'},
-                        {key: 'Overturning Roe was a bad decision.', color: 'blue', screen: 'GoRoe'}
-                    ]}
-                    renderItem={({item}) => 
-                        <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
-                            <Text style={[styles.item, 
-                                    {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
-                        </TouchableOpacity>}
-                />
-            </LinearGradient>
-        </View>
+        <LinearGradient colors={colors} locations={locations} style={styles.container}>
+            <FlatList
+                data={[
+                    {key: 'Abortion is wrong.', color: 'red', screen: 'AbortWrong'},
+                    {key: 'Abortion is not wrong.', color: 'blue', screen: 'AbortNotWrong'},
+                    {key: 'Abortion should be banned.', color: 'red', screen: 'AbortIllegal'},
+                    {key: 'Abortion shouldn\'t be banned.', color: 'blue', screen: 'AbortLegal'},
+                    {key: 'Overturning Roe was a good decision.', color: 'red', screen: 'NoRoe'},
+                    {key: 'Overturning Roe was a bad decision.', color: 'blue', screen: 'GoRoe'}
+                ]}
+                renderItem={({item}) => 
+                    <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
+                        <Text style={[styles.item, 
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
+                    </TouchableOpacity>}
+            />
+        </LinearGradient>
     )
 }
 
@@ -112,7 +83,7 @@ const AbortWrong = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -134,7 +105,7 @@ const AbortVeryWrong = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -156,7 +127,7 @@ const AbortRelevantlyWrong = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -168,6 +139,7 @@ const AbortNotWrong = ({navigation}) => {
         <LinearGradient colors={colors} locations={locations} style={styles.container}>
             <FlatList
                 data={[
+                    {key: 'Then it must be okay to kill toddlers or newborns.', color: 'red', screen: ''}, 
                     {key: 'The embryo isn\'t a living human organism.', color: 'blue', screen: ''}, 
                     {key: 'The embryo isn\'t a person.', color: 'blue', screen: ''},
                     {key: 'The fetus is a parasite.', color: 'blue', screen: ''},
@@ -178,7 +150,7 @@ const AbortNotWrong = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -200,7 +172,7 @@ const AbortNotVeryWrong = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -222,7 +194,7 @@ const AbortNotRelevantlyWrong = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -244,7 +216,7 @@ const AbortPractical = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -266,7 +238,7 @@ const AbortImpractical = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -286,7 +258,7 @@ const AbortLegal = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -306,7 +278,7 @@ const AbortIllegal = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -328,7 +300,7 @@ const NoRoe = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -350,7 +322,7 @@ const GoRoe = ({navigation}) => {
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
                         <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
                     </TouchableOpacity>}
             />
         </LinearGradient>
@@ -367,14 +339,14 @@ const Contents = () => {
     return (
         <Stack.Navigator 
             initialRouteName='Home' 
-            screenOptions={{animationEnabled: true, headerShown: false}}>
-            <Stack.Screen name='Home' component={Home} />
+            screenOptions={{animationEnabled: true, headerStyle: {backgroundColor: 'black'}, headerTitleStyle: {color: 'white', fontSize: 18, maxWidth: 500}, headerTintColor: 'white'}}>
+            <Stack.Screen name='Home' component={Home} options={{title: 'Welcome to Bipa!', headerTitleStyle: {fontSize: 40}}} />
             <Stack.Screen name='AbortWrong' component={AbortWrong} options={{cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid, title: 'Abortion is wrong.'}} />
             <Stack.Screen name='AbortVeryWrong' component={AbortVeryWrong} options={{title: 'Abortion is very wrong.'}} />
-            <Stack.Screen name='AbortRelevantlyWrong' component={AbortRelevantlyWrong} options={{title: 'Abortion has an especially reprehensible kind of wrongness.'}} />
-            <Stack.Screen name='AbortNotWrong' component={AbortNotWrong} options={{title: 'Abortion is not wrong.'}} />
+            <Stack.Screen name='AbortRelevantlyWrong' component={AbortRelevantlyWrong} options={{title: 'Abortion\'s wrongness is of an intolerable kind.'}} />
+            <Stack.Screen name='AbortNotWrong' component={AbortNotWrong} options={{title: 'It\'s okay to abort.'}} />
             <Stack.Screen name='AbortNotVeryWrong' component={AbortNotVeryWrong} options={{title: 'Abortion is not that wrong.'}} />
-            <Stack.Screen name='AbortNotRelevantlyWrong' component={AbortNotRelevantlyWrong} options={{title: 'Abortion\'s wrongness is of a kind that can be tolerated.'}} />
+            <Stack.Screen name='AbortNotRelevantlyWrong' component={AbortNotRelevantlyWrong} options={{title: 'Abortion\'s wrongness is of a tolerable kind.'}} />
             <Stack.Screen name='AbortPractical' component={AbortPractical} options={{title: 'Legalizing abortion does not have impractical results.'}} />
             <Stack.Screen name='AbortImpractical' component={AbortImpractical} options={{title: 'Legalizing abortion has impractical results.'}} />
             <Stack.Screen name='AbortLegal' component={AbortLegal} options={{title: 'Abortion shouldn\'t be banned.'}} />
