@@ -7,9 +7,15 @@ import {CardStyleInterpolators} from '@react-navigation/stack'
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingTop: 22,
-        resizeMode: 'cover'
+        position: 'relative',
+        height: '100vh',
+        width: '100vw',
+        backgroundColor: 'green'
+    },
+    gradient: {
+        position: 'absolute',
+        top: '49px',
+        left: 0
     },
     item: {
         padding: 10,
@@ -21,6 +27,24 @@ const styles = StyleSheet.create({
         borderRadius: '5px',
         backgroundColor: 'rgb(20, 20, 20)',
         color: 'white'
+    },
+    homeHeader: {
+        position: 'absolute',
+        top: 0, 
+        left: 0,
+        height: '49px',
+        width: '100%',
+        backgroundColor: 'black',
+        borderBottomColor: 'white',
+        borderBottomWidth: '1px',
+        paddingLeft: '20px'
+    },
+    homeTitle: {
+        color: 'white',
+        fontSize: 40
+    },
+    header: {
+
     }
 })
 
@@ -40,23 +64,28 @@ const Stack = createNativeStackNavigator()
 
 const Home = ({navigation}) => {
     return (
-        <LinearGradient colors={colors} locations={locations} style={styles.container}>
-            <FlatList
-                data={[
-                    {key: 'Abortion is wrong.', color: 'red', screen: 'AbortWrong'},
-                    {key: 'Abortion is not wrong.', color: 'blue', screen: 'AbortNotWrong'},
-                    {key: 'Abortion should be banned.', color: 'red', screen: 'AbortIllegal'},
-                    {key: 'Abortion shouldn\'t be banned.', color: 'blue', screen: 'AbortLegal'},
-                    {key: 'Overturning Roe was a good decision.', color: 'red', screen: 'NoRoe'},
-                    {key: 'Overturning Roe was a bad decision.', color: 'blue', screen: 'GoRoe'}
-                ]}
-                renderItem={({item}) => 
-                    <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
-                        <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
-                    </TouchableOpacity>}
-            />
-        </LinearGradient>
+        <View style={styles.container}>
+            <View style={styles.homeHeader}>
+                <Text style={styles.homeTitle}>Welcome to Bipa!</Text>
+            </View>
+            <LinearGradient colors={colors} locations={locations} style={styles.gradient}>
+                <FlatList
+                    data={[
+                        {key: 'Abortion is wrong.', color: 'red', screen: 'AbortWrong'},
+                        {key: 'Abortion is not wrong.', color: 'blue', screen: 'AbortNotWrong'},
+                        {key: 'Abortion should be banned.', color: 'red', screen: 'AbortIllegal'},
+                        {key: 'Abortion shouldn\'t be banned.', color: 'blue', screen: 'AbortLegal'},
+                        {key: 'Overturning Roe was a good decision.', color: 'red', screen: 'NoRoe'},
+                        {key: 'Overturning Roe was a bad decision.', color: 'blue', screen: 'GoRoe'}
+                    ]}
+                    renderItem={({item}) => 
+                        <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
+                            <Text style={[styles.item, 
+                                    {boxShadow: '2px 2px 10px ' + item.color}]}>{item.key}</Text>
+                        </TouchableOpacity>}
+                />
+            </LinearGradient>
+        </View>
     )
 }
 
@@ -338,8 +367,8 @@ const Contents = () => {
     return (
         <Stack.Navigator 
             initialRouteName='Home' 
-            screenOptions={{animationEnabled: true, headerStyle: {backgroundColor: 'black'}, headerTitleStyle: {color: 'white', fontSize: 24, maxWidth: 500}, headerTintColor: 'white'}}>
-            <Stack.Screen name='Home' component={Home} options={{title: 'Welcome to Bipa!', headerTitleStyle: {fontSize: 40}}} />
+            screenOptions={{animationEnabled: true, headerShown: false}}>
+            <Stack.Screen name='Home' component={Home} />
             <Stack.Screen name='AbortWrong' component={AbortWrong} options={{cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid, title: 'Abortion is wrong.'}} />
             <Stack.Screen name='AbortVeryWrong' component={AbortVeryWrong} options={{title: 'Abortion is very wrong.'}} />
             <Stack.Screen name='AbortRelevantlyWrong' component={AbortRelevantlyWrong} options={{title: 'Abortion has an especially reprehensible kind of wrongness.'}} />
