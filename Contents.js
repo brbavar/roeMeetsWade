@@ -14,10 +14,14 @@ const styles = StyleSheet.create({
     innerContainer: {
         padding: 22,
         width: '80%',
-        border: '2px solid black'
+        border: '2px solid black',
+        borderRadius: '40px'
     },
     para: {
         color: 'white'
+    },
+    leafList: {
+        marginTop: -20
     },
     item: {
         padding: 10,
@@ -33,62 +37,80 @@ const styles = StyleSheet.create({
     }
 })
 
-var {colors, locations} = easeGradient({
-    colorStops: {
-        0: {
-            color: 'rgb(70, 0, 70)'
+var purples, locations1
+{
+    var {colors, locations} = easeGradient({
+        colorStops: {
+            0: {
+                color: 'rgb(70, 0, 70)'
+            },
+            1: {
+                color: 'rgb(110, 0, 110)'
+            }
         },
-        1: {
-            color: 'rgb(110, 0, 110)'
-        }
-    },
-    extraColorStopsPerTransition: 100
-})
+        extraColorStopsPerTransition: 100
+    })
 
-const purples = [...colors]
-const locations1 = Array()
-for (var i = 0; i < locations.size; i++)
-    locations1.push(locations[i])
+    purples = [...colors]
+    locations1 = Array()
+    for (var i = 0; i < locations.size; i++)
+        locations1.push(locations[i])
+}
 
-({colors, locations} = easeGradient({
-    colorStops: {
-        0: {
-            color: 'rgb(70, 0, 0)'
+var reds, locations2
+{
+    var {colors, locations} = easeGradient({
+        colorStops: {
+            0: {
+                color: 'rgb(30, 0, 0)'
+            },
+            1: {
+                color: 'rgb(70, 0, 0)'
+            }
         },
-        1: {
-            color: 'rgb(110, 0, 0)'
-        }
-    },
-    extraColorStopsPerTransition: 100
-}))
+        extraColorStopsPerTransition: 100
+    })
 
-const reds = colors.slice()
-const locations2 = Array()
-for (var i = 0; i < locations.size; i++)
-    locations2.push(locations[i])
+    reds = [...colors]
+    locations2 = Array()
+    for (var i = 0; i < locations.size; i++)
+        locations2.push(locations[i])
+}
 
-({colors, locations} = easeGradient({
-    colorStops: {
-        0: {
-            color: 'rgb(0, 0, 70)'
+var blues, locations3
+{
+    var {colors, locations} = easeGradient({
+        colorStops: {
+            0: {
+                color: 'rgb(0, 0, 70)'
+            },
+            1: {
+                color: 'rgb(0, 0, 110)'
+            }
         },
-        1: {
-            color: 'rgb(0, 0, 110)'
-        }
-    },
-    extraColorStopsPerTransition: 100
-}))
+        extraColorStopsPerTransition: 100
+    })
 
-const blues = [...colors]
-const locations3 = Array()
-for (var i = 0; i < locations.size; i++)
-    locations3.push(locations[i])
+    blues = [...colors]
+    locations3 = Array()
+    for (var i = 0; i < locations.size; i++)
+        locations3.push(locations[i])
+}
 
 const Stack = createNativeStackNavigator()
 
 const screens = ['Home', 'AbortWrong', 'Conception', 'NotZygote', 'AbortVeryWrong', 
     'AbortRelevantlyWrong', 'AbortNotWrong', 'NoDebt', 'AbortNotVeryWrong', 'AbortNotRelevantlyWrong', 
     'AbortPractical', 'AbortImpractical', 'AbortLegal', 'AbortIllegal', 'NoRoe', 'GoRoe']
+
+const specialScreens = ['Home']
+
+const leaves = ['Conception']
+
+const branches = screens.filter(screen => 
+    { 
+        return !leaves.includes(screen) && !specialScreens.includes(screen) 
+    })
 
 const dataSets = [
     [
@@ -100,9 +122,9 @@ const dataSets = [
         {key: 'Overturning Roe was a bad decision.', color: 'blue', screen: 'GoRoe'}
     ],
     [
-        {key: `It\'s not ${<i>that</i>} wrong, though.`, color: 'blue', screen: 'AbortNotVeryWrong'},
+        {key: 'It\'s not that wrong, though.', color: 'blue', screen: 'AbortNotVeryWrong'},
         {key: 'Its wrongness is of a kind that can be tolerated.', color: 'blue', screen: 'AbortNotRelevantlyWrong'},
-        {key: 'Then masturbation is wrong.', color: 'blue', screen: ''},
+        {key: 'Then male masturbation is wrong.', color: 'blue', screen: ''},
         {key: 'Then contraception is wrong.', color: 'blue', screen: ''},
         {key: 'The life of a human organism begins at conception.', color: 'red', screen: 'Conception'},
         {key: 'Life is intrinsically valuable.', color: 'red', screen: ''},
@@ -225,40 +247,25 @@ for (var i = 0; i < screens.length; i++)
 const lists = Array()
 var j = 0
 
-const pushList = (screen, navigation) => {
+const Screen = (navigation, screen) => {
     lists.push(<FlatList
-                data={screenToData.get(screen)}
-                renderItem={({item}) => 
-                    <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
-                        <Text style={[styles.item, 
-                                {boxShadow: '2px 2px 7px ' + item.color}]}>{item.key}</Text>
-                    </TouchableOpacity>}
-    />)
-}
+        style={leaves.includes(screen) ? styles.leafList : {}}
+        data={screenToData.get(screen)}
+        renderItem={({item}) => 
+            <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
+                <Text style={[styles.item, 
+                        {boxShadow: '2px 2px 7px ' + item.color + ', 2px 2px 10px black'}]}>
+                            {item.key}
+                </Text>
+            </TouchableOpacity>}
+       />)
 
-const Home = ({navigation}) => {
-    pushList('Home', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortWrong = ({navigation}) => {
-    pushList('AbortWrong', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const Conception = ({navigation}) => {
-    pushList('Conception', navigation)
-
+    if (!leaves.includes(screen))
+        return (
+            <LinearGradient colors={purples} locations={locations1} style={styles.container}>
+                {lists[j++]}
+            </LinearGradient>
+        )
     return (
         <LinearGradient colors={purples} locations={locations1} style={[styles.container, {alignItems: 'center'}]}>
             <LinearGradient colors={reds} locations={locations2} style={[styles.innerContainer]}>
@@ -270,135 +277,15 @@ const Conception = ({navigation}) => {
     )
 }
 
-const NotZygote = ({navigation}) => {
-    pushList('NotZygote', navigation)
+const fun = (screen) => ({navigation}) => {return Screen(navigation, screen)}
 
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortVeryWrong = ({navigation}) => {
-    pushList('AbortVeryWrong', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortRelevantlyWrong = ({navigation}) => {
-    pushList('AbortRelevantlyWrong', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortNotWrong = ({navigation}) => {
-    pushList('AbortNotWrong', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const NoDebt = ({navigation}) => {
-    pushList('NoDebt', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortNotVeryWrong = ({navigation}) => {
-    pushList('AbortNotVeryWrong', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortNotRelevantlyWrong = ({navigation}) => {
-    pushList('AbortNotRelevantlyWrong', navigation)
-    
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortPractical = ({navigation}) => {
-    pushList('AbortPractical', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortImpractical = ({navigation}) => {
-    pushList('AbortImpractical', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortLegal = ({navigation}) => {
-    pushList('AbortLegal', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const AbortIllegal = ({navigation}) => {
-    pushList('AbortIllegal', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const NoRoe = ({navigation}) => {
-    pushList('NoRoe', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
-
-const GoRoe = ({navigation}) => {
-    pushList('GoRoe', navigation)
-
-    return (
-        <LinearGradient colors={purples} locations={locations1} style={styles.container}>
-            {lists[j++]}
-        </LinearGradient>
-    )
-}
+const [Home, AbortWrong, Conception, NotZygote, AbortVeryWrong, AbortRelevantlyWrong, 
+    AbortNotWrong, NoDebt, AbortNotVeryWrong, AbortNotRelevantlyWrong, AbortPractical, 
+    AbortImpractical, AbortLegal, AbortIllegal, NoRoe, GoRoe] =
+    [fun('Home'), fun('AbortWrong'), fun('Conception'), fun('NotZygote'), fun('AbortVeryWrong'), 
+    fun('AbortRelevantlyWrong'), fun('AbortNotWrong'), fun('NoDebt'), fun('AbortNotVeryWrong'), 
+    fun('AbortNotRelevantlyWrong'), fun('AbortPractical'), fun('AbortImpractical'), 
+    fun('AbortLegal'), fun('AbortIllegal'), fun('NoRoe'), fun('GoRoe')]
 
 const Contents = () => {
     return (

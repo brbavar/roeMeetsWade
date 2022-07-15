@@ -1,4 +1,5 @@
 // import {StatusBar} from 'expo-status-bar'
+import 'expo-dev-client'
 import {NavigationContainer} from '@react-navigation/native'
 import Contents from './Contents'
 /* import AppLoading from 'expo-app-loading'
