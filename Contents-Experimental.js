@@ -103,19 +103,33 @@ var blues, locations3
 
 const Stack = createNativeStackNavigator()
 
+const screens = ['Home', 'AbortWrong', 'Kill', 'EndsLife', 'LifeConcep', 'HumConcep', 'OrgConcep', 
+    'NotZygote', 'AbortVeryWrong', 'AbortRelevantlyWrong', 'AbortNotWrong', 'NoDebt', 'AbortNotVeryWrong', 
+    'AbortNotRelevantlyWrong', 'AbortPractical', 'AbortImpractical', 'AbortLegal', 'AbortIllegal', 'NoRoe', 
+    'GoRoe']
+
+const specialScreens = ['Home']
+
+const leaves = ['HumConcep']
+
+const branches = screens.filter(screen => 
+    { 
+        return !leaves.includes(screen) && !specialScreens.includes(screen) 
+    })
+
 const dataSets = [
     [
         {key: 'Abortion is wrong.', color: 'red', screen: 'AbortWrong'},
-        {key: 'Abortion isn\'t wrong.', color: 'blue', screen: 'AbortNotWrong'},
+        {key: 'It\'s okay to abort.', color: 'blue', screen: 'AbortNotWrong'},
         {key: 'Abortion should be banned.', color: 'red', screen: 'AbortIllegal'},
         {key: 'Abortion shouldn\'t be banned.', color: 'blue', screen: 'AbortLegal'},
-        {key: 'Overturning Roe was a good decision.', color: 'red', screen: 'NoRoe'},
-        {key: 'Overturning Roe was a bad decision.', color: 'blue', screen: 'GoRoe'},
+        {key: 'Good riddance, Roe!', color: 'red', screen: 'NoRoe'},
+        {key: 'Bring Roe back!', color: 'blue', screen: 'GoRoe'},
         {key: 'I\'m a man, so I\'ll just keep my mouth shut.', color: 'blue', screen: 'NoMen'}
     ],
     [
-        {key: 'It\'s not that wrong, though.', color: 'blue', screen: 'AbortNotVeryWrong'},
-        {key: 'Its wrongness is of a kind that can be tolerated.', color: 'blue', screen: 'AbortNotRelevantlyWrong'},
+        {key: 'It\'s not very wrong.', color: 'blue', screen: 'AbortNotVeryWrong'},
+        {key: 'Its wrongness is of a tolerable kind.', color: 'blue', screen: 'AbortNotRelevantlyWrong'},
         {key: 'Then male masturbation is wrong.', color: 'blue', screen: ''},
         {key: 'Then contraception is wrong.', color: 'blue', screen: ''},
         {key: 'Abortion is killing.', color: 'red', screen: 'Kill'},
@@ -133,8 +147,7 @@ const dataSets = [
         {key: 'Abortion ends a life.', color: 'red', screen: 'EndsLife'}
     ],
     [
-        {key: 'If life begins at conception, abortion ends that life.', color: 'red', screen: ''},
-        {key: 'Life does begin at conception.', color: 'red', screen: 'LifeConcep'},
+        {key: 'Life begins at conception.', color: 'red', screen: 'LifeConcep'},
         {key: 'Human life begins at conception.', color: 'red', screen: 'HumConcep'},
         {key: 'The life of a human organism begins at conception.', color: 'red', screen: 'OrgConcep'}
     ],
@@ -181,34 +194,21 @@ const dataSets = [
         {key: 'The fetus is a parasite.', color: 'blue', screen: ''},
         {key: 'My body, my choice—A woman\'s body is her sovereign zone.', color: 'blue', screen: ''},
         {key: 'Women have the right to refuse the use of their bodies.', color: 'blue', screen: ''},
-        {key: 'The mother doesn\'t owe the fetus just because she knowingly risked conceiving.', color: 'blue', screen: 'NoDebt'}
+        {key: 'The mother doesn\'t owe the fetus.', color: 'blue', screen: 'NoDebt'}
     ],
     [
         {key: 'Causing a being to exist can\'t constitute an uncompensated harm.', color: 'blue', screen: ''},
         {key: 'The mother didn\'t, even tacitly, make a binding agreement to stay pregnant just by willingly engaging in sex.', color: 'blue', screen: ''}
     ],
     [
-        {key: 'Then it\'s not that wrong to kill toddlers or newborns.', color: 'red', screen: ''}, 
-        {key: 'Abortion can\'t be any more wrong than refusing to donate bone marrow to one\'s anemic cousin.', color: 'blue', screen: ''},
+        {key: 'It can\'t be any more wrong than refusing to donate bone marrow to one\'s anemic cousin.', color: 'blue', screen: ''},
         {key: 'It can\'t be any more wrong than vaporizing a falling person who would otherwise survive but, through no fault of their own, non-lethally crush the shit out of you.', color: 'blue', screen: ''},
         {key: 'The fetus has lower moral status than a human.', color: 'blue', screen: ''}, 
         {key: 'The fetus has lower moral status than a person.', color: 'blue', screen: ''},
-        {key: 'The fetus isn\'t mature enough for death to seriously harm it.', color: 'blue', screen: 'Immature'},
+        {key: 'The fetus isn\'t mature enough for death to seriously harm it.', color: 'blue', screen: ''},
         {key: 'The biological parents are mature enough for pregnancy to seriously harm them.', color: 'blue', screen: ''},
         {key: '.', color: 'blue', screen: ''},
         {key: '.', color: 'blue', screen: ''}
-    ],
-    [
-        {key: 'The fetus has weak time-relative interests.', color: 'blue', screen: ''},
-        {key: 'The fetus is less cognitively advanced than a snake, squirrel, or puppy.', color: 'blue', screen: ''},
-        {key: 'The fetus has no future of value to lose.', color: 'blue', screen: ''},
-        {key: 'The fetus has never had valuable abilities.', color: 'blue', screen: ''},
-        {key: 'Losing the ability to gain valuable abilities is not always that tragic.', color: 'blue', screen: ''},
-        {key: 'The fetus lacks autonomy.', color: 'blue', screen: ''},
-        {key: 'The fetus lacks self-awareness.', color: 'blue', screen: ''},
-        {key: 'The fetus lacks an actual desire to live.', color: 'blue', screen: ''},
-        {key: 'The fetus lacks an idealized desire to live.', color: 'blue', screen: ''},
-        {key: 'An insect can feel worse pain than a fetus.', color: 'blue', screen: ''}
     ],
     [
         {key: 'As shitty as it is if your only hope of survival lets you die, it\'s not the government\'s place to prevent that.', color: 'blue', screen: ''}, 
@@ -235,9 +235,9 @@ const dataSets = [
         {key: '.', color: 'blue', screen: ''}
     ],
     [
-        {key: 'Abortion isn\'t wrong at all.', color: 'blue', screen: 'AbortNotWrong'},
-        {key: 'Abortion isn\'t wrong enough to ban.', color: 'blue', screen: 'AbortNotVeryWrong'},
-        {key: 'The wrongness of abortion is of a kind that can be tolerated.', color: 'blue', screen: 'AbortNotRelevantlyWrong'},
+        {key: 'Abortion isn\'t wrong.', color: 'blue', screen: 'AbortNotWrong'},
+        {key: 'It\'s not very wrong.', color: 'blue', screen: 'AbortNotVeryWrong'},
+        {key: 'Its wrongness is of a tolerable kind.', color: 'blue', screen: 'AbortNotRelevantlyWrong'},
         {key: 'Legalizing abortion is practical.', color: 'blue', screen: 'AbortPractical'},
     ],
     [
@@ -245,7 +245,7 @@ const dataSets = [
         {key: 'Then refusing to help someone who will otherwise die should be illegal.', color: 'blue', screen: ''},
         {key: 'Abortion is wrong.', color: 'red', screen: 'AbortWrong'}, 
         {key: 'Abortion is very wrong.', color: 'red', screen: 'AbortVeryWrong'},
-        {key: 'The wrongness of abortion is of a kind that can\'t be tolerated.', color: 'red', screen: 'AbortRelevantlyWrong'},
+        {key: 'Abortion\'s wrongness is of an intolerable kind.', color: 'red', screen: 'AbortRelevantlyWrong'},
         {key: 'Legalizing abortion is impractical.', color: 'red', screen: 'AbortImpractical'}
     ], 
     [
@@ -266,34 +266,11 @@ const dataSets = [
     ]
 ]
 
-const screens = ['Home', 'AbortWrong', 'Kill', 'EndsLife', 'LifeConcep', 'HumConcep', 'OrgConcep', 
-    'NotZygote', 'AbortVeryWrong', 'AbortRelevantlyWrong', 'AbortNotWrong', 'NoDebt', 'AbortNotVeryWrong', 
-    'Immature', 'AbortNotRelevantlyWrong', 'AbortPractical', 'AbortImpractical', 'AbortLegal', 
-    'AbortIllegal', 'NoRoe', 'GoRoe']
-
-const specialScreens = ['Home']
-
-const leaves = ['LifeConcep']
-
-const branches = screens.filter(screen => 
-    { 
-        return !leaves.includes(screen) && !specialScreens.includes(screen) 
-    })
-
-const paras = [
-    'The fusion of sperm and egg immediately produces a being made of cells—just one cell at first—'
-    + 'which performs all the functions essential to life: growth, homeostasis.'
-]
-
 const screenToData = new Map()
 for (var i = 0; i < screens.length; i++)
     screenToData.set(screens[i], dataSets[i])
 
-const leafToPara = new Map()
-for (var i = 0; i < leaves.length; i++)
-    leafToPara.set(leaves[i], paras[i]);
-
-const lists = []
+const lists = Array()
 var j = 0
 
 const Screen = (navigation, screen) => {
@@ -319,7 +296,8 @@ const Screen = (navigation, screen) => {
         <LinearGradient colors={purples} locations={locations1} style={[styles.container, {alignItems: 'center'}]}>
             <LinearGradient colors={reds} locations={locations2} style={[styles.innerContainer]}>
                 <Text style={styles.para}>
-                    {leafToPara.get(screen)}
+                    The fusion of sperm and egg immediately produces a being made of cells—just one cell at first—which
+                    performs all the functions essential to life: growth, homeostasis.
                 </Text>
             </LinearGradient>
             {lists[j++]}
@@ -330,53 +308,35 @@ const Screen = (navigation, screen) => {
 const fun = (screen) => ({navigation}) => {return Screen(navigation, screen)}
 
 const [Home, AbortWrong, Kill, EndsLife, LifeConcep, HumConcep, OrgConcep, NotZygote, AbortVeryWrong, 
-    AbortRelevantlyWrong, AbortNotWrong, NoDebt, AbortNotVeryWrong, Immature, AbortNotRelevantlyWrong, 
+    AbortRelevantlyWrong, AbortNotWrong, NoDebt, AbortNotVeryWrong, AbortNotRelevantlyWrong, 
     AbortPractical, AbortImpractical, AbortLegal, AbortIllegal, NoRoe, GoRoe] =
     [fun('Home'), fun('AbortWrong'), fun('Kill'), fun('EndsLife'), fun('LifeConcep'), fun('HumConcep'), fun('OrgConcep'), 
     fun('NotZygote'), fun('AbortVeryWrong'), fun('AbortRelevantlyWrong'), fun('AbortNotWrong'), 
-    fun('NoDebt'), fun('AbortNotVeryWrong'), fun('Immature'), fun('AbortNotRelevantlyWrong'), fun('AbortPractical'), 
+    fun('NoDebt'), fun('AbortNotVeryWrong'), fun('AbortNotRelevantlyWrong'), fun('AbortPractical'), 
     fun('AbortImpractical'), fun('AbortLegal'), fun('AbortIllegal'), fun('NoRoe'), fun('GoRoe')]
+
+const screenComps = [Home, AbortWrong, Kill, EndsLife, LifeConcep, HumConcep, OrgConcep, NotZygote, AbortVeryWrong, 
+    AbortRelevantlyWrong, AbortNotWrong, NoDebt, AbortNotVeryWrong, AbortNotRelevantlyWrong, 
+    AbortPractical, AbortImpractical, AbortLegal, AbortIllegal, NoRoe, GoRoe]
+
+/* const RenderScreens = ({screenProps}) => {return screenProps && 
+       screenProps.map((screenProp) => 
+       <Stack.Screen name={screenProp[0]} component={screenProp[1]} options={{title: screenProp[2]}} />)} */
+
+/* const screenElems = []
+for (var i = 0; i < dataSets.length; i++)
+    for (var j = 0; j < dataSets[i].length; j++) {
+        const vals = Object.values(dataSets[i][j])
+        if (vals[2] == screens[i])
+            screenElems.push(<Stack.Screen name={screens[i]} component={screenComps[i]} options={{title: vals[0]}} key={i} />)
+    } */
 
 const Contents = () => {
     return (
         <Stack.Navigator 
             initialRouteName='Home' 
             screenOptions={{headerStyle: {backgroundColor: 'black'}, headerTitleStyle: {color: 'white', fontSize: 16, maxWidth: 500}, headerTintColor: 'white'}}>
-            
-            <Stack.Screen name='Home' component={Home} options={{title: 'Welcome to Roe Meets Wade!', headerTitleStyle: {fontSize: 25}}} />
-            
-            <Stack.Screen name='AbortWrong' component={AbortWrong} options={{title: 'Abortion is wrong.'}} />
-            <Stack.Screen name='Kill' component={Kill} options={{title: 'Abortion is killing.'}} />
-            <Stack.Screen name='EndsLife' component={EndsLife} options={{title: 'Abortion ends a life.'}} />
-            <Stack.Screen name='LifeConcep' component={LifeConcep} options={{title: 'Life begins at conception.'}} />
-            <Stack.Screen name='HumConcep' component={HumConcep} options={{title: 'Human life begins at conception.'}} />
-            <Stack.Screen name='OrgConcep' component={OrgConcep} options={{title: 'The life of a human organism begins at conception.'}} />
-            <Stack.Screen name='NotZygote' component={NotZygote} options={{title: 'I\'m not the zygote I came from.'}} />
-            
-            <Stack.Screen name='AbortVeryWrong' component={AbortVeryWrong} options={{title: 'Abortion is very wrong.'}} />
-            
-            <Stack.Screen name='AbortRelevantlyWrong' component={AbortRelevantlyWrong} options={{title: 'Abortion\'s wrongness is of an intolerable kind.'}} />
-            
-            <Stack.Screen name='AbortNotWrong' component={AbortNotWrong} options={{title: 'It\'s okay to abort.'}} />
-            <Stack.Screen name='NoDebt' component={NoDebt} options={{title: 'The mother doesn\'t owe the fetus.'}} />
-            
-            <Stack.Screen name='AbortNotVeryWrong' component={AbortNotVeryWrong} options={{title: 'Abortion isn\'t that wrong.'}} />
-            <Stack.Screen name='Immature' component={Immature} options={{title: 'The fetus can\'t be seriously harmed.'}} />
-            
-            <Stack.Screen name='AbortNotRelevantlyWrong' component={AbortNotRelevantlyWrong} options={{title: 'Abortion\'s wrongness is of a tolerable kind.'}} />
-            
-            <Stack.Screen name='AbortPractical' component={AbortPractical} options={{title: 'Legalizing abortion is practical.'}} />
-            
-            <Stack.Screen name='AbortImpractical' component={AbortImpractical} options={{title: 'Legalizing abortion is impractical.'}} />
-            
-            <Stack.Screen name='AbortLegal' component={AbortLegal} options={{title: 'Abortion shouldn\'t be banned.'}} />
-            
-            <Stack.Screen name='AbortIllegal' component={AbortIllegal} options={{title: 'Abortion should be banned.'}} />
-            
-            <Stack.Screen name='NoRoe' component={NoRoe} options={{title: 'Good riddance, Roe!'}} />
-            
-            <Stack.Screen name='GoRoe' component={GoRoe} options={{title: 'Bring Roe back!'}} />
-
+            {screenElems}
         </Stack.Navigator>
     )
 }
