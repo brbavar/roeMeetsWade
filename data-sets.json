@@ -1,0 +1,204 @@
+{
+    "Home": 
+    [
+        {"key": "Abortion is wrong.", "color": "red", "screen": "AbortWrong"},
+        {"key": "Abortion isn't wrong.", "color": "blue", "screen": "AbortNotWrong"},
+        {"key": "Abortion should be banned.", "color": "red", "screen": "AbortIllegal"},
+        {"key": "Abortion shouldn't be banned.", "color": "blue", "screen": "AbortLegal"},
+        {"key": "Overturning Roe was a good decision.", "color": "red", "screen": "NoRoe"},
+        {"key": "Overturning Roe was a bad decision.", "color": "blue", "screen": "GoRoe"},
+        {"key": "I'm a man, so I'll just keep my mouth shut.", "color": "blue", "screen": "NoMen"}
+    ],
+
+    "AbortWrong": 
+    [
+        {"key": "It's not that wrong, though.", "color": "blue", "screen": "AbortNotVeryWrong"},
+        {"key": "Its wrongness is of a kind that can be tolerated.", "color": "blue", "screen": "AbortNotRelevantlyWrong"},
+        {"key": "Then male masturbation is wrong.", "color": "blue", "screen": ""},
+        {"key": "Then contraception is wrong.", "color": "blue", "screen": ""},
+        {"key": "Abortion is killing.", "color": "red", "screen": "Kill"},
+        {"key": "Life is intrinsically valuable.", "color": "red", "screen": ""},
+        {"key": "Even impairments less severe than death (e.g., fetal alcohol syndrome) are wrong to inflict on the fetus.", "color": "red", "screen": ""},
+        {"key": "You were once a fetus.", "color": "red", "screen": ""},
+        {"key": "The fetus is a person.", "color": "red", "screen": ""},
+        {"key": "The fetus is likely enough a person that abortion is too morally risky.", "color": "red", "screen": ""},
+        {"key": "A woman can't do just anything with her body.", "color": "red", "screen": ""},
+        {"key": "The right not to help others doesn't imply a right to kill the fetus.", "color": "red", "screen": ""},
+        {"key": "Consent to sex is consent to pregnancy.", "color": "red", "screen": ""},
+        {"key": "You don't get to separately consent to the effects of an action.", "color": "red", "screen": ""}
+    ],
+
+    "Kill": 
+    [
+        {"key": "Abortion ends a life.", "color": "red", "screen": "EndsLife"}
+    ],
+
+    "EndsLife": 
+    [
+        {"key": "If life begins at conception, abortion ends that life.", "color": "red", "screen": ""},
+        {"key": "Life does begin at conception.", "color": "red", "screen": "LifeConcep"},
+        {"key": "Human life begins at conception.", "color": "red", "screen": "HumConcep"},
+        {"key": "The life of a human organism begins at conception.", "color": "red", "screen": "OrgConcep"}
+    ],
+
+    "LifeConcep":
+    [
+        {"key": "But surely I'm not the zygote I came from.", "color": "blue", "screen": "NotZygote"},
+        {"key": "I define \"life\" differently.", "color": "blue", "screen": ""}
+    ],
+    
+    "HumConcep": 
+    [
+        {"key": "But surely I'm not the zygote I came from.", "color": "blue", "screen": "NotZygote"},
+        {"key": "I define \"life\" differently.", "color": "blue", "screen": ""}
+    ],
+
+    "OrgConcep": 
+    [
+        {"key": "But surely I'm not the zygote I came from.", "color": "blue", "screen": "NotZygote"},
+        {"key": "I define \"life\" differently.", "color": "blue", "screen": ""}
+    ],
+
+    "NotZygote": 
+    [
+        {"key": "The zygote I came from wasn't a complete, uniquely individuated organism.", "color": "blue", "screen": ""},
+        {"key": "It wasn't a person.", "color": "blue", "screen": ""},
+        {"key": "It wasn't the same person I am.", "color": "blue", "screen": ""},
+        {"key": "Zygotes don't exist.", "color": "blue", "screen": ""},
+        {"key": "There is no \"I.\"", "color": "blue", "screen": ""}
+    ],
+
+    "AbortVeryWrong": 
+    [
+        {"key": "It's motivated by an arbitrary exclusion of unborn children from the category of persons, akin to the historical exclusion of women, slaves, and Jews. And consistency may require the exclusion of other precious human beings.", "color": "red", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ],
+
+    "AbortRelevantlyWrong": 
+    [
+        {"key": ".", "color": "blue", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ],
+ 
+    "AbortNotWrong":
+    [
+        {"key": "Then it's okay to kill toddlers or newborns.", "color": "red", "screen": ""}, 
+        {"key": "The life of a human organism doesn't begin at conception.", "color": "blue", "screen": ""}, 
+        {"key": "The fetus isn't a person.", "color": "blue", "screen": ""},
+        {"key": "The fetus is a parasite.", "color": "blue", "screen": ""},
+        {"key": "My body, my choice—A woman's body is her sovereign zone.", "color": "blue", "screen": ""},
+        {"key": "Women have the right to refuse the use of their bodies.", "color": "blue", "screen": ""},
+        {"key": "The mother doesn't owe the fetus just because she knowingly risked conceiving.", "color": "blue", "screen": "NoDebt"}
+    ],
+
+    "NoDebt":
+    [
+        {"key": "Causing a being to exist can't constitute an uncompensated harm.", "color": "blue", "screen": ""},
+        {"key": "The mother didn't, even tacitly, make a binding agreement to stay pregnant just by willingly engaging in sex.", "color": "blue", "screen": ""}
+    ],
+
+    "AbortNotVeryWrong":
+    [
+        {"key": "Then it's not that wrong to kill toddlers or newborns.", "color": "red", "screen": ""}, 
+        {"key": "Abortion can't be any more wrong than refusing to donate bone marrow to one's anemic cousin.", "color": "blue", "screen": ""},
+        {"key": "It can't be any more wrong than vaporizing a falling person who would otherwise survive but, through no fault of their own, non-lethally crush the shit out of you.", "color": "blue", "screen": ""},
+        {"key": "The fetus has lower moral status than a human.", "color": "blue", "screen": ""}, 
+        {"key": "The fetus has lower moral status than a person.", "color": "blue", "screen": ""},
+        {"key": "The fetus isn't mature enough for death to seriously harm it.", "color": "blue", "screen": "Immature"},
+        {"key": "The biological parents are mature enough for pregnancy to seriously harm them.", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ],
+ 
+    "Immature":
+    [
+        {"key": "The fetus has weak time-relative interests.", "color": "blue", "screen": ""},
+        {"key": "The fetus is less cognitively advanced than a snake, squirrel, or puppy.", "color": "blue", "screen": ""},
+        {"key": "The fetus has no future of value to lose.", "color": "blue", "screen": ""},
+        {"key": "The fetus has never had valuable abilities.", "color": "blue", "screen": ""},
+        {"key": "Losing the ability to gain valuable abilities is not always that tragic.", "color": "blue", "screen": ""},
+        {"key": "The fetus lacks autonomy.", "color": "blue", "screen": ""},
+        {"key": "The fetus lacks self-awareness.", "color": "blue", "screen": ""},
+        {"key": "The fetus lacks an actual desire to live.", "color": "blue", "screen": ""},
+        {"key": "The fetus lacks an idealized desire to live.", "color": "blue", "screen": ""},
+        {"key": "An insect can feel worse pain than a fetus.", "color": "blue", "screen": ""}
+    ],
+
+    "AbortNotRelevantlyWrong":
+    [
+        {"key": "As shitty as it is if your only hope of survival lets you die, it's not the government's place to prevent that.", "color": "blue", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ],
+
+    "AbortPractical":
+    [
+        {"key": ".", "color": "blue", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ],
+
+    "AbortImpractical":
+    [
+        {"key": ".", "color": "blue", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ],
+
+    "AbortLegal":
+    [
+        {"key": "Abortion isn't wrong at all.", "color": "blue", "screen": "AbortNotWrong"},
+        {"key": "Abortion isn't wrong enough to ban.", "color": "blue", "screen": "AbortNotVeryWrong"},
+        {"key": "The wrongness of abortion is of a kind that can be tolerated.", "color": "blue", "screen": "AbortNotRelevantlyWrong"},
+        {"key": "Legalizing abortion is practical.", "color": "blue", "screen": "AbortPractical"}
+    ],
+
+
+    "AbortIllegal":
+    [
+        {"key": "Then terminating ectopic pregnancies should be illegal.", "color": "blue", "screen": ""},
+        {"key": "Then refusing to help someone who will otherwise die should be illegal.", "color": "blue", "screen": ""},
+        {"key": "Abortion is wrong.", "color": "red", "screen": "AbortWrong"}, 
+        {"key": "Abortion is very wrong.", "color": "red", "screen": "AbortVeryWrong"},
+        {"key": "The wrongness of abortion is of a kind that can't be tolerated.", "color": "red", "screen": "AbortRelevantlyWrong"},
+        {"key": "Legalizing abortion is impractical.", "color": "red", "screen": "AbortImpractical"}
+    ],
+
+    "NoRoe":
+    [
+        {"key": ".", "color": "blue", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ],
+
+    "GoRoe":
+    [
+        {"key": ".", "color": "blue", "screen": ""}, 
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""},
+        {"key": ".", "color": "blue", "screen": ""}
+    ]
+}

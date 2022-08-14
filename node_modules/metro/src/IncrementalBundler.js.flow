@@ -33,24 +33,24 @@ export opaque type RevisionId: string = string;
 
 export type OutputGraph = Graph<>;
 
-type OtherOptions = {|
+type OtherOptions = {
   +onProgress: $PropertyType<DeltaBundlerOptions<>, 'onProgress'>,
   +shallow: boolean,
-|};
+};
 
-export type GraphRevision = {|
+export type GraphRevision = {
   // Identifies the last computed revision.
   +id: RevisionId,
   +date: Date,
   +graphId: GraphId,
   +graph: OutputGraph,
   +prepend: $ReadOnlyArray<Module<>>,
-|};
+};
 
-export type IncrementalBundlerOptions = $ReadOnly<{|
+export type IncrementalBundlerOptions = $ReadOnly<{
   hasReducedPerformance?: boolean,
   watch?: boolean,
-|}>;
+}>;
 
 function createRevisionId(): RevisionId {
   return crypto.randomBytes(8).toString('hex');
@@ -73,7 +73,7 @@ class IncrementalBundler {
   constructor(config: ConfigT, options?: IncrementalBundlerOptions) {
     this._config = config;
     this._bundler = new Bundler(config, options);
-    this._deltaBundler = new DeltaBundler(this._bundler);
+    this._deltaBundler = new DeltaBundler(this._bundler.getWatcher());
   }
 
   end(): void {
@@ -178,7 +178,7 @@ class IncrementalBundler {
       onProgress: null,
       shallow: false,
     },
-  ): Promise<{|+graph: OutputGraph, +prepend: $ReadOnlyArray<Module<>>|}> {
+  ): Promise<{+graph: OutputGraph, +prepend: $ReadOnlyArray<Module<>>}> {
     const graph = await this.buildGraphForEntries(
       [entryFile],
       transformOptions,
